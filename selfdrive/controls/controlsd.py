@@ -101,6 +101,8 @@ class Controls:
     car_recognized = self.CP.carName != 'mock'
 
     controller_available = self.CI.CC is not None and not passive and not self.CP.dashcamOnly
+    print(f'[DEBUG]controller_available: {controller_available}')
+    print(f'{passive=}, {self.CP.dashcamOnly=}')
     community_feature = self.CP.communityFeature or \
                         self.CP.fingerprintSource == car.CarParams.FingerprintSource.can
     community_feature_disallowed = community_feature and (not community_feature_toggle)
@@ -620,7 +622,8 @@ class Controls:
     elif self.CP.lateralTuning.which() == 'indi':
       controlsState.lateralControlState.indiState = lac_log
     self.pm.send('controlsState', dat)
-
+    print(f'[DEBUG] engageable: {controlsState.engageable}, {self.events.event_names()}')
+    # import ipdb; ipdb.set_trace()
     # carState
     car_events = self.events.to_msg()
     cs_send = messaging.new_message('carState')

@@ -138,7 +138,8 @@ def set_offroad_alert_if_changed(offroad_alert: str, show_alert: bool, extra_tex
 
 
 def thermald_thread():
-
+  #import ipdb; ipdb.set_trace()
+    
   pm = messaging.PubMaster(['deviceState'])
 
   pandaState_timeout = int(1000 * 2.5 * DT_TRML)  # 2.5x the expected pandaState frequency
@@ -390,6 +391,7 @@ def thermald_thread():
     if TICI:
       set_offroad_alert_if_changed("Offroad_NvmeMissing", (not Path("/data/media").is_mount()))
 
+    #import ipdb; ipdb.set_trace()
     # Handle offroad/onroad transition
     should_start = all(startup_conditions.values())
     if should_start != should_start_prev or (count == 0):

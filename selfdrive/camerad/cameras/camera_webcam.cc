@@ -108,13 +108,13 @@ static void road_camera_thread(CameraState *s) {
   // cv::Rect roi_rear(160, 0, 960, 720);
 
   // transforms calculation see tools/webcam/warp_vis.py
-  float ts[9] = {1.50330396, 0.0, -59.40969163,
-                  0.0, 1.50330396, 76.20704846,
-                  0.0, 0.0, 1.0};
-  // if camera upside down:
-  // float ts[9] = {-1.50330396, 0.0, 1223.4,
-  //                 0.0, -1.50330396, 797.8,
+  // float ts[9] = {1.50330396, 0.0, -59.40969163,
+  //                 0.0, 1.50330396, 76.20704846,
   //                 0.0, 0.0, 1.0};
+  // if camera upside down:
+  float ts[9] = {-1.50330396, 0.0, 1223.4,
+                  0.0, -1.50330396, 797.8,
+                  0.0, 0.0, 1.0};
 
   run_camera(s, cap_road, ts);
 }

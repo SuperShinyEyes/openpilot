@@ -188,6 +188,7 @@ class NativeProcess(ManagerProcess):
     if self.proc is not None:
       return
 
+    print(f"[DEBUG] Start {self.name} native process")
     cwd = os.path.join(BASEDIR, self.cwd)
     cloudlog.info("starting process %s" % self.name)
     self.proc = Process(name=self.name, target=nativelauncher, args=(self.cmdline, cwd))
@@ -220,6 +221,7 @@ class PythonProcess(ManagerProcess):
     if self.proc is not None:
       return
 
+    print(f"[DEBUG] Start {self.name} Python process")
     cloudlog.info("starting python %s" % self.module)
     self.proc = Process(name=self.name, target=launcher, args=(self.module,))
     self.proc.start()
@@ -273,6 +275,8 @@ def ensure_running(procs, started, driverview=False, not_run=None):
     not_run = []
 
   for p in procs:
+    # if p.name == 'camerad':
+    #   #import ipdb; ipdb.set_trace()
     if p.name in not_run:
       p.stop(block=False)
     elif not p.enabled:

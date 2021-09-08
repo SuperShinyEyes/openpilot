@@ -129,6 +129,7 @@ def manager_thread():
   pm = messaging.PubMaster(['managerState'])
 
   while True:
+    #import ipdb; ipdb.set_trace()
     sm.update()
     not_run = ignore[:]
 
@@ -192,7 +193,7 @@ def main():
 
 
 if __name__ == "__main__":
-  unblock_stdout()
+  # unblock_stdout()
 
   try:
     main()
